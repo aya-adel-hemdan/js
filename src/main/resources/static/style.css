@@ -1,0 +1,354 @@
+@charset "ISO-8859-1";
+
+body {
+	background: #FCFCFC;
+}
+
+.row {
+	column-count: 2;
+	/*column-gap: 10px;*/
+}
+
+/*table
+{
+	column-gap: 6em;
+}*/
+
+.h2
+{
+	color:#34a366;
+	font-size: 20px;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=number],
+	input[type=url], input[type=date], input[type=tel], select {
+	width: 100%;
+	padding: 5px 20px;
+	margin: 4px 0;
+	display: inline-block;
+	border: 1px solid #EFEEEE;
+	border-radius: 5px;
+	box-sizing: border-box;
+	text-align: left;
+	font-size: 13px;
+	height:30px;
+
+}
+
+/*.input1 {
+	column-gap: 30px;
+	white-space: nowrap;
+}*/
+
+/*.input2
+{
+	padding-left: 16em;
+}*/
+input[type=submit]{
+	width: 10%;
+	background-color: #34a366;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+a:href
+{
+	width: 50%;
+	background-color: #34a366;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+input[type=submit]:hover {
+	background-color: #34a366;
+}
+
+.second-col {
+	/* position: -webkit-sticky;
+  position: sticky;*/
+	left: 200px;
+}
+
+.second-label {
+	left: 150px;
+}
+
+.divv {
+	border-radius: 5px;
+	background-color: #FCFCFC;
+	padding: 50px;
+	background-size: contain;
+	text-align: center;
+}
+
+
+.spann {
+	color: red;
+	/*font-style: italic;*/
+	font-size: 10px;
+	padding-right: 10px;
+}
+
+.error {
+	color: red;
+	font-style: italic;
+}
+
+
+/* ==========================================================================
+   #CARD
+   ========================================================================== */
+.card {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: #fff;
+}
+
+.card-5 {
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
+	box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+.card-5 .card-body {
+	padding: 50px ;
+	padding-bottom: 73px;
+}
+
+@media ( max-width : 400px) {
+	.card-5 .card-body {
+		padding: 0px 0px;
+		padding-bottom: 0px;
+	}
+}
+
+.column1 {
+	text-align: left;
+	padding-left: 10px;
+	white-space: nowrap;
+	/*margin-right: 2em;*/
+}
+
+label
+{
+	font-size: 14px;
+	/*display:inline-block;*/
+	display: flex;
+	align-items: flex-start;
+}
+
+.column2 {
+	text-align: left;
+	/*padding-left: 5em;*/
+	white-space: nowrap;
+
+}
+
+.form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.form.contents>* {
+	width: 30%;
+}
+/* ==========================================================================
+   #Navbar
+   ========================================================================== */
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #f2f2f2;
+  overflow: hidden;
+  width:100%;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  /*float: left;*/
+  color: #333;
+  text-align: center;
+  padding:14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+	width: 16.2%;
+	font-weight:bold;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #34a366;
+  color:white ;
+}
+
+/* A color to the active/current link */
+.topnav a.active {
+  background-color: #34a366;
+  color: white;
+}	
+
+/*	tr > * + * {
+   		padding-left: 10em;
+	}*/
+	
+/*////////////////////////////////////////////////////////*/
+#myDynamicTable,#myDynamicAddressTable,#myDynamicPhoneTable {
+  font-family: Arial, Helvetica, sans-serif;
+  /*border-collapse: collapse;*/
+  width: 100%;
+  /*border-spacing: 10px;*/
+}
+
+/*#myDynamicTable td, #myDynamicTable th ,#myDynamicAddressTable td,#myDynamicPhoneTable td,#myDynamicAddressTable th,#myDynamicPhoneTable th{
+  border: 1px solid #ddd;
+  padding: 6px;
+}*/
+#myDynamicTable td,#myDynamicAddressTable td,#myDynamicPhoneTable td{
+	border: 1px solid #ddd;
+	/*padding: 2px;*/
+	font-size: 12px;
+}
+
+/*#myTable tr:nth-child(even){background-color: #f2f2f2;}*/
+
+#myDynamicTable tr:hover,#myDynamicAddressTable tr:hover,#myDynamicPhoneTable tr:hover{background-color: rgb(237, 239, 238);}
+
+#myDynamicTable th,#myDynamicAddressTable th, #myDynamicPhoneTable th{
+
+padding: 5px;
+ /* background-color: #4CAF50;*/
+  background-color: #34a366;
+  color: white;
+  text-align: center;
+	font-size: 13px;
+}	
+
+
+.cancel {
+  background-color: #800000;
+  color: white;
+  /*padding: 13px 24px;*/
+	width: 10%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-size: 13px;
+}
+
+.add {
+  background-color: #c0c0c0;
+  color: black;
+  /*padding: 7px 7px;*/
+  padding: 8px 15px 8px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+}
+/*a:hover, a:active {
+  background-color: #d90000;
+}*/
+/*////////////////////////////////////////////////////////////////////////////*/
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 30%;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////////*/
+.sidepanel  {
+	width: 0;
+	position: relative;
+	z-index: 1;
+	height: 250px;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+}
+
+.sidepanel a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+}
+
+.sidepanel a:hover {
+	color: #f1f1f1;
+}
+
+.sidepanel .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+}
+
+.openbtn {
+	font-size: 20px;
+	cursor: pointer;
+	background-color: #111;
+	color: white;
+	padding: 10px 15px;
+	border: none;
+}
+
+.openbtn:hover {
+	background-color:#444;
+}

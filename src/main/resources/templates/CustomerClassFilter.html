@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2 style="color:#34a366; float:left; padding-left:243px; font-size: 20px;">Customer Class</h2><br>
+<div class="divv" style="padding: 50px 243px 100px 243px;">
+    <form method="post" id="myForm1" name="myForm1" action="/Add_Lookup_data" onsubmit="return Save_Customer()"  enctype="multipart/form-data" >
+        <div class="card-5" style="padding: 0px 50px 40px 50px;">
+            <table id="maintable">
+                <tr class="row">
+                    <td class="column1"><h3 style="color:#34a366; float:left; font-size: 20px;">Filter</h3></td>
+                </tr>
+                <tr class="row">
+
+                    <td class="column1"><label style="padding-right: 20px; ">Class Code </label></td>
+                    <td><input type="text"  name="filtercode" id="filtercode" class="input1"
+                               required></td>
+
+                    <td class="column2" ><label style="padding-left: 50px; padding-right: 20px;">Class Name </label></td>
+                    <td><select name="name" id="name"  style="width: 200px;">
+                        <option value=""></option>
+                        <option th:each="class : ${model.AllClasses}"
+                                th:value="${class.PARTNER_CLASS_ID}" th:text=${class.DESCRIPTION}></option>
+                    </select></td>
+                </tr>
+
+            </table>
+
+
+            <br>
+            <input type="button" class="cancel" style="background-color: #34a366; border: none; float: right; margin-right: 30px; " value="Search" onclick="search()" >&nbsp;
+           <!-- <input type="button" class="cancel" style="background-color: #34a366; border: none; float: right; margin-right: 10px;" value="+ADD" onclick="activeSave()" > -->
+            <a href="/Customer_Classes" style="background-color: #34a366; border: none; float: right; margin-right: 10px; " class="cancel"> +ADD </a>
+            <br><br><br>
+            <table id="myDynamicTable" class="table table-striped" >
+                <tbody id="tbodyy"></tbody>
+            </table>
+
+        </div>
+        <br><br>
+        <!--<input type="submit" value="Save">-->
+
+    </form>
+</div>
+<script src="customerClassFilter.js"></script>
+</body>
+</html>

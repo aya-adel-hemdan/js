@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body onload="onloading()">
+<h2 style="color:#34a366; float:left; padding-left:243px; font-size: 20px;">Add Customer</h2>
+	<div style="padding: 50px 243px 100px 243px;" class="divv">
+		<form class="topnav">
+			
+  				<a  href="/AddCustomerMainData">Main Data</a>
+  				<a href="/ContactInfoo">Contact Info</a>
+ 				 <a  href="/Legal_Documents">Legal Documents</a>
+  				<a class="active" href="/Managers">Managers</a>
+  				<a href="/Contact_Person">Contact Person</a>
+  				</form>
+		<form method="post" action="/SaveManager" id="myForm" name="myForm">
+		
+			<div class="card-5" style="padding: 20px 50px 30px 50px;">
+				<table id="managertable">
+
+					<tr class="row">
+
+						<td class="column1" style="padding-right: 60px;" ><label>Name </label></td>
+						<td><input type="text" name="name" class="input1" id="name" onchange="validate()" required></td>
+						<td class="column2" style="padding-right: 60px; padding-left: 8em;"><label>Title </label></td>
+						<td><input type="text" name="title" id="title"></td>
+					</tr>
+
+					<tr class="row">
+
+						<td class="column1" ><label>Phone </label></td>
+						<td><input type="text" name="phone"  id="phone" onchange="validate()"></td>
+						<td class="column2" style="padding-left: 8em;"><label>Email </label></td>
+						<td><input type="email" name="email" id="email" onchange="validate()"></td>
+					</tr>
+
+				</table>
+
+				<br> <a href="/go_home" class="add"  style="float: right; margin-right: 15px; background-color: #800000; display: inline-block; color: white" > Cancel </a> &nbsp;&nbsp; &nbsp;&nbsp;
+				<input class="add" type="button"
+					   onclick="activeSave()" style=" background-color: #34a366; margin-left: 570px; color: white; display: inline-block; " value="Save" id="AddBtn">
+				<br><br>
+
+				<table id="myDynamicTable" class="table table-striped">
+					<tbody id="tbodyy"></tbody>
+				</table>
+
+			</div>
+
+			<select name="personTitle" id="personTitle" style="display: none">
+				<option value="">Select City</option>
+				<option th:each="person : ${model.persons}"
+						th:value="${person.TITLE}" th:text=${person.TITLE}></option>
+			</select>
+			<select name="personName" id="personName" style="display: none">
+				<option value="">Select City</option>
+				<option th:each="person : ${model.persons}"
+						th:value="${person.FULL_NAME}" th:text=${person.FULL_NAME}></option>
+			</select>
+			<select name="personPhone" id="personPhone" style="display: none">
+				<option value="">Select City</option>
+				<option th:each="person : ${model.persons}"
+						th:value="${person.PHONE_NO}" th:text=${person.PHONE_NO}></option>
+			</select>
+			<select name="personEmail" id="personEmail" style="display: none">
+				<option value="">Select City</option>
+				<option th:each="person : ${model.persons}"
+						th:value="${person.EMAIL}" th:text=${person.EMAIL}></option>
+			</select>
+			<select name="personPersonId" id="personPersonId" style="display: none">
+				<option value="">Select City</option>
+				<option th:each="person : ${model.persons}"
+						th:value="${person.PERSON_ID}" th:text=${person.PERSON_ID}></option>
+			</select>
+		</form>
+		<input type="text" name="customerid" id="customerid" th:value="${model.customerId}" style="display: none">
+		<input type="text" name="result" id="result" th:value="${model.managers}" style="display: none">
+
+	</div>
+<script src="Manager.js"></script>
+</body>
+</html>

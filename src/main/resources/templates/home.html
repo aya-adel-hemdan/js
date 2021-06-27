@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1 th:text="#{home.title}" th:dir="#{home.dir}">Home page</h1>
+<a href="/logout" th:text="#{logout}" th:dir="#{logout.dir}"></a>
+
+<div class="divv">
+<div class="container">
+  
+  <a href="/add_item"  class="btn btn-success"  role="button" th:text="#{home.item}"
+     th:dir="#{home.dir}">Add New Item </a><br><br>
+  <a href="/AddCustomerMainData" class="btn btn-success" role="button" th:text="#{home.customer}"
+     th:dir="#{home.dir}">Add New Customer </a><br><br>
+  <a href="/Add_Lookup" class="btn btn-success" role="button"th:text="#{home.lookup}"
+     th:dir="#{home.dir}">Add New Lookup </a><br><br>
+  <a href="/Customer_Classes" class="btn btn-success" role="button"th:text="#{home.class}"
+     th:dir="#{home.dir}">Add New Customer Class </a><br><br>
+  <a href="/ClassFilter" class="btn btn-success" role="button" th:text="#{home.filterclass}"
+     th:dir="#{home.dir}">Filter Customer Classes </a><br><br>
+  <a href="/LookupFilter" class="btn btn-success" role="button" th:text="#{home.filterlookup}"
+     th:dir="#{home.dir}">Filter Lookups </a><br><br>
+  <a href="/CustomerFilter" class="btn btn-success" role="button" th:text="#{home.filtercustomer}"
+     th:dir="#{home.dir}">Filter Customers </a>
+
+</div>
+</div>
+<script>
+  function openNav() {
+    document.getElementById("mySidepanel").style.width = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidepanel").style.width = "0";
+  }
+</script>
+</body>
+</html>

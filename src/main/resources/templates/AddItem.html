@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      href="http://netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css"
+      rel="stylesheet"
+    />
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div>
+<form action="/add_item_dataa" method="post" enctype="multipart/form-data">
+
+<label>Code     : </label> <input type="text" name="code" required><br>
+<label>Name     : </label> <input type="text" name="name" pattern="^[a-zA-Z]\w{2,99}$"  title="user name should start with character" required><br>
+<label>ItemClass: </label> 
+<select   name="classid" id="classid" required>
+<option value="" >Select Item Class </option>
+        <option th:each="class : ${model.AllClasses}"
+                th:value="${class.id}"
+                th:text=${class.name}></option>
+</select>
+<br>
+<label>BarCode  : </label> <input type="text" name="barcode" required><br>
+<label>Currency : </label> 
+<select   name="currencyid" id="currencyid" required>
+<option value="">Select Currency</option>
+        <option th:each="currency : ${model.AllCurrencies}"
+                th:value="${currency.id}"
+                th:text=${currency.name}></option>
+</select>
+<br>
+<label>Sales Tax Schedule : </label> 
+<select  name="salestaxid" id="salestaxid" required>
+<option value="">Select Currency</option>
+        <option th:each="salestax : ${model.AllTaxes}"
+                th:value="${salestax.id}"
+                th:text=${salestax.name}></option>
+</select>
+<br>
+<label>Cost Price     : </label> <input type="number" step="any" name="costprice" required><br>
+<label>Sales Price    : </label> <input type="number" step="any" name="salesprice" required><br>
+
+
+ <label>Image :</label><input type="file" id="img" name="file" accept="image/png,image/jpeg"><br>  
+
+<!--  --><input type="submit" value="Save">  
+<!-- <button type="button" onclick="/add_item_data">Save</button> -->
+</form>
+
+<form action="/go_home">
+	<input type="submit" value="Cancel">
+</form>
+</div>
+
+<script type="text/javascript">
+	function translationForm()
+	{
+		
+	}
+</script>
+</body>
+</html>

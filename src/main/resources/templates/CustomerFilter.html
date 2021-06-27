@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2 style="color:#34a366; float:left; padding-left:243px; font-size: 20px;">Customer</h2><br>
+<div class="divv" style="padding: 50px 243px 100px 243px;">
+    <form method="post" id="myForm1" name="myForm1" action="/Add_Lookup_data" onsubmit="return Save_Customer()"  enctype="multipart/form-data" >
+        <div class="card-5" style="padding: 0px 50px 40px 50px;">
+            <table id="maintable">
+                <tr class="row">
+                    <td class="column1"><h3 style="color:#34a366; float:left; font-size: 20px;">Filter</h3></td>
+                </tr>
+                <tr class="row">
+
+                    <td class="column1"><label>Customer Name </label> </td><td >
+                    <input type="text"  name="customername" id="customername" style="width: 220px;" class="input1"
+                    required></td>
+
+                    <td class="column2" ><label ><label style=" padding-right: 20px;">Customer Class </label></td>
+                    <td><select name="classname" id="classname"  style="width: 200px;">
+                        <option value=""></option>
+                        <option th:each="class : ${model.AllClasses}"
+                                th:value="${class.PARTNER_CLASS_ID}" th:text=${class.DESCRIPTION}></option>
+                    </select></td>
+
+                </tr>
+                <tr class="row">
+                    <td class="column1"> <label>Active Account Status </label> </td><td >
+                    <select   name="active" id="active" >
+                        <option value=""></option>
+                        <option th:each="active : ${model.AllStatuses}"
+                                th:value="${active.LOOKUP_ID}" th:text=${active.DESCRIPTION}></option>
+                    </select>
+                </td><td></td>
+                    <td>
+                        <a href="/AddCustomerMainData" style="background-color: #34a366; border: none; margin-left: 50px;  width: 70px; " class="cancel"> +ADD </a>&nbsp;&nbsp;
+                        <input type="button" class="cancel" style="background-color: #34a366; border: none;  width: 70px;  float: right;" value="Search" onclick="search()" >
+                    </td>
+                </tr>
+
+            </table>
+
+
+            <!-- <input type="button" class="cancel" style="background-color: #34a366; border: none; float: right; margin-right: 10px;" value="+ADD" onclick="activeSave()" > -->
+
+            <br>
+            <h4 type="text" id="notfound" name="notfound" style="display: none;  font-weight:normal;">There is no results for this search </h4>
+
+            <table id="myDynamicTable" class="table table-striped" >
+                <tbody id="tbodyy"></tbody>
+            </table>
+
+        </div>
+        <br><br>
+        <!--<input type="submit" value="Save">-->
+
+    </form>
+</div>
+<script src="CustomerFilter.js"></script>
+</body>
+</html>

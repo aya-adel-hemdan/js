@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body onload="onloading()">
+	<h2
+		style="color: #34a366; float: left; padding-left: 243px; font-size: 20px;">Add Customer
+		</h2>
+		
+	<div class="divv" style="padding: 50px 243px 100px 243px;">
+	<form class="topnav">
+			
+  				<a  href="/AddCustomerMainData">Main Data</a>
+  				<a href="/ContactInfoo">Contact Info</a>
+ 				 <a class="active" href="/Legal_Documents">Legal Documents</a>
+  				<a href="/Managers">Managers</a>
+  				<a href="/Contact_Person">Contact Person</a>
+  				</form>
+		<form method="post" action="/SaveDocuments" enctype="multipart/form-data" id="myForm" name="myForm">
+			<div class="card-5" style="padding: 20px 50px 30px 50px;">
+				<table id="documentTable">
+					<tr class="row">
+						<td class="column1" style="padding-right: 35px;"><label>Document Type </label></td>
+						<td ><select name="Documenttypeid" id="typeid" class="input1" style="width: 90%">
+								<option value="">Select Type</option>
+								<option th:each="type : ${model.DocumentTypes}"
+									th:value="${type.LOOKUP_ID}" th:text=${type.DESCRIPTION}></option>
+						</select></td>
+
+						<td class="column2" style="padding-right: 35px; "><label>Issuing Country </label></td>
+						<td><select name="countryid" id="countryid"  >
+								<option value="">Select Type</option>
+								<option th:each="country : ${model.AllCountries}"
+									th:value="${country.LOOKUP_ID}" th:text=${country.DESCRIPTION}></option>
+						</select></td>
+					</tr>
+					<tr class="row">
+
+						<td class="column1"><label>Issuing Date </label></td>
+						<td><input type="date" name="IssuingDate" id="IssuingDate"
+							class="input1"  style="width: 90%"></td>
+						<td class="column2" style="padding-right: 35px; "><label>Issuing End Date </label></td>
+						<td><input type="date" name="EndDate" id="EndDate"  ></td>
+					</tr>
+
+					<tr class="row">
+
+						<td class="column1"><label>Document Picture </label></td>
+						<td><input type="file" name="picture" id="picture"
+							class="input1"  style="width: 90%">
+
+
+
+						<td class="column2" style="padding-right: 35px; "><label>Remarks </label></td>
+						<td><input type="text" name="remark" id="remark"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><img src="" alt="logo" id="image" style="width: 100px; height: 100px; display:none " >
+							<a class="btn" href="" id="hreff" style="display: none"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+					</tr>
+
+				</table>
+			<!-- 	<br> <a class="btn btn-success" href="#"
+					onclick="myFunction2()" style="float: right;">+Add</a> <br>
+				<br> -->
+				
+				<br> <a href="/go_home" class="add"  style="float: right; background-color: #800000; display: inline-block; color: white" > Cancel </a> &nbsp;&nbsp; &nbsp;&nbsp;
+				<input class="add" type="button"
+					onclick="activeSave()" style=" background-color: #34a366; margin-left: 580px; color: white" value="Save" id="AddBtn">
+				<br><br>
+				<input type="text" name="result" id="result" th:value="${model.customerDocuments}" style="display: none">
+
+				<table id="myDynamicTable" class="table table-striped">
+					<tbody id="tbodyy"></tbody>
+				</table>
+			</div>
+
+			<select name="docType" id="docType" style="display: none">
+				<option value="">Select City</option>
+				<option th:each="document : ${model.AllDocuments}"
+						th:value="${document.DOC_TYPE_ID}" ></option>
+			</select>
+			<select name="docCountry" id="docCountry" style="display: none">
+				<option value="">Select City</option>
+				<option th:each="document : ${model.AllDocuments}"
+						th:value="${document.COUNTRY_ID}" ></option>
+			</select>
+			<select name="docDate" id="docDate" style="display: none">
+				<option value="">Select City</option>
+				<option th:each="document : ${model.AllDocuments}"
+						th:value="${document.ISSUE_DATE}" ></option>
+			</select>
+			<select name="docid" id="docid" style="display: none">
+				<option value="">Select City</option>
+				<option th:each="document : ${model.AllDocuments}"
+						th:value="${document.docId}" ></option>
+			</select>
+
+		<!--	<br> <input type="submit" value="Next"> &nbsp;&nbsp; <a href="/go_home" class="cancel"> Cancel </a> -->
+		</form>
+<input type="text" name="customerid" id="customerid" th:value="${model.customerId}" style="display: none">
+	</div>
+	<script src="LegalDocument.js"></script>
+</body>
+</html>

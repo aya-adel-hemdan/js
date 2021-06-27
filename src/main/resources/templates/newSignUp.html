@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+		<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Please sign up</h3>
+			 	</div>
+			  	<div class="panel-body">
+			    	<form accept-charset="UTF-8" role="form" action="/add_customerUser_data" method="post">
+                    <fieldset>
+			    	  	<div class="form-group">
+			    		    <input class="form-control" placeholder="User Name" name="name" type="text"
+			    		    pattern="^[a-zA-Z]\w{2,99}$"
+							title="user name should start with character" required>
+			    		</div>
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="Email" name="email" type="email" 
+			    			title="please insert a valid email"  required>
+			    		</div>
+			    		
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="Password" name="pass" type="password" value=""
+			    			pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
+							title="Password must contain at least 6 characters, including UPPER,lowercase and numbers"
+							required>
+			    		</div>
+			    		
+			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Sign Up"><br>
+			    		
+			    	</fieldset>
+			      	</form>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+

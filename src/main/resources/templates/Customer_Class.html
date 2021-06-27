@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body onload="updatefields()">
+<h2
+		style="color: #34a366; float: left; padding-left: 243px; font-size: 20px;">Add Customer Class
+</h2>
+<br>
+<div class="divv" style="padding: 50px 243px 100px 243px;">
+<form method="post" id="myForm1" name="myForm1" action="/Add_CustomerClass_data" enctype="multipart/form-data" ><!--onsubmit="return Save_Customer()"-->
+<div class="card-5" style="padding: 30px 50px 40px 50px;">
+<table id="maintable">
+	<tr class="row">
+	
+		<td class="column1"><label> Code </label></td><td ><input type="text" name="code" id="code" class="input1" th:value="${model.Code}" disabled></td>
+		<td class="column2"><label>  Name </label></td>
+		<td><input type="text" name="username" id="username" style="width: 160px; float: left;"
+
+				   title="user name should start with character"  >
+
+			<input class="add" type="button" id="myBtn"  value="Translate" style="margin-top: 5px;  padding: 9px 5px 9px 5px; font-size: 8px; background-color: #f2f2f2">
+			<!--	<span id="namespan"  ></span>--></td>
+		
+	</tr>
+	<tr class="row">
+		
+		<td class="column1"><label>Currency  </label></td>
+						<td><select name="currencyid" id="currencyid" class="input1" required>
+								<option value="">Select Currency</option>
+								<option th:each="currency : ${model.AllCurrencies}"
+									th:value="${currency.LOOKUP_ID}" th:text=${currency.DESCRIPTION}></option>
+						</select></td>
+						
+		<td class="column2"><label>Payment Method  </label></td>
+						<td><select name="Paymentid" id="PaymentMethods"
+							 required>
+								<option value="">Select Method</option>
+								<option th:each="payment : ${model.AllPaymentMethods}"
+									th:value="${payment.LOOKUP_ID}" th:text=${payment.DESCRIPTION}></option>
+						</select></td>				
+		
+	</tr>
+	<tr class="row">		
+		<td class="column1" style="padding-right: 1em;  "><label >Active Status </label></td><td style="float: left;"><input type="checkbox" name="active" id="active" class="input1" value="1" checked></td>
+	</tr>
+</table>
+</div>
+<br><br>
+<!--<input type="submit" value="Save">-->
+	<input type="button" id="savebtn" class="cancel" style="background-color: #34a366; border: none;" value="Save" onclick="activeSave()">&nbsp;&nbsp; <a href="/go_home" class="cancel"> Cancel </a>
+
+
+</form>
+	<div id="myModal" class="modal" >
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h3 style="color:#34a366;">Translation</h3>
+			<form id="myForm" >
+				<table id="translation">
+					<tr class="row" ><td class="column1"><label>Description</label> </td>
+						<td ><label>Language</label></td></tr>
+					<tr class="row" ><td class="column1" ><input type="text" name="us" id="us" style="margin-right: 1em; width:80%;" > </td><td style="width: 20%;"><input type="text" value="US"  disabled></td></tr>
+					<tr class="row" ><td class="column1"  ><input type="text" name="ar" id="ar" style="width: 80%"></td> <td style="width: 20%;"><input type="text" value="AR"  disabled></td></tr>
+
+				</table>
+				<input class="add" style="background-color: #34a366; color: white;" type="button" onclick="validateTransForm()" value="ok" >
+			</form>
+		</div>
+
+	</div>
+	<input type="text" name="result" id="result" th:value="${model.array}" style="display: none">
+</div>
+<script src="customerClass.js"></script>
+<!--<script src="customerClassFilter.js"></script>-->
+<script src="validateTranslationForm.js"></script>
+</body>
+</html>

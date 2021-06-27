@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+	<h2
+		style="color: #34a366; float: left; padding-left: 50px; font-size: 20px;">Legal
+		Documents</h2>
+	<div >
+			<form class="topnav">
+			
+  				<a class="active" href="#home">Customer Main Data</a>
+  				<a href="#news">Contact Info</a>
+ 				 <a href="#contact">Legal Documents</a>
+  				<a href="#about">Managers</a>
+  				<a href="#about">Contact Person</a>
+  				</form>
+  				
+		<form method="post" action="/Managers" enctype="multipart/form-data"
+			id="myForm">
+			
+			
+			
+			<div class="card-5" >
+			
+			
+				<table>
+					<tr class="row">
+						<td class="column1"><label>Document Type </label></td>
+						<td><select name="Documenttypeid" id="typeid" class="input1">
+								<option value="">Select Type</option>
+								<option th:each="type : ${model.DocumentTypes}"
+									th:value="${type.LookupID}" th:text=${type.Description}></option>
+						</select></td>
+
+						<td class="column2"><label>Issuing Country </label></td>
+						<td><select name="countryid" id="countryid">
+								<option value="">Select Type</option>
+								<option th:each="country : ${model.AllCountries}"
+									th:value="${country.LookupID}" th:text=${country.Description}></option>
+						</select></td>
+					</tr>
+					<tr class="row">
+
+						<td class="column1"><label>Issuing Date </label></td>
+						<td><input type="date" name="IssuingDate" id="IssuingDate"
+							class="input1"></td>
+						<td class="column2"><label>Issuing End Date </label></td>
+						<td><input type="date" name="EndDate" id="EndDate"></td>
+					</tr>
+
+					<tr class="row">
+
+						<td class="column1"><label>Document Picture </label></td>
+						<td><input type="file" name="picture" id="picture"
+							class="input1"></td>
+						<td class="column2"><label>Remarks </label></td>
+						<td><input type="text" name="remark" id="remark"></td>
+					</tr>
+
+				</table>
+				<!-- 	<br> <a class="btn btn-success" href="#"
+					onclick="myFunction2()" style="float: right;">+Add</a> <br>
+				<br> -->
+
+				<br> 
+				<input class="btn btn-success" type="button"
+					onclick="addRow('myTable')" style="float: right; background-color: #34a366;" value="+Add"> <br>
+					
+				<!-- 	<input  type="button" 
+					onclick="myFunction2()" class="cancel" value="Cancel">
+					<input  type="button" 
+					onclick="myFunction2()" class="btn" value="Save" >  -->
+				<br> <br>
+
+				<table class="table table-striped" id="myTable">
+					<!--  <caption>Your todos are</caption> -->
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Issuing Country</th>
+							<th>Issuing Date</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="tbodyy">
+					<!--  	<tr id="row0">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><input type="button" value="Edit" onclick="EditRow();"
+								style="color: #34a366;"></td>
+							<td><input type="button" value="Delete"
+								onclick="DeleteRow();" style="color: #FF6347;"></td>
+						</tr>
+						<tr id="row1">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><input type="button" value="Edit" onclick="EditRow();"
+								style="color: #34a366;"></td>
+							<td><input type="button" value="Delete"
+								onclick="DeleteRow();" style="color: #FF6347;"></td>
+						</tr>
+						<tr id="row2">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><input type="button" value="Edit" onclick="EditRow();"
+								style="color: #34a366;"></td>
+							<td><input type="button" value="Delete"
+								onclick="DeleteRow();" style="color: #FF6347;"></td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+
+
+			<br> <input type="submit" value="Next">
+		</form>
+		<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+		<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+  	<script>
+	var count=0;
+    function GenerateTable() {
+        //Build an array containing Customer records.
+        var documents = new Array();
+        var doctype=document.getElementById("typeid").value;
+			
+			var mylist = document.getElementById("typeid");
+  			var DocumentType= mylist.options[mylist.selectedIndex].text;
+  			//console.log(DocumentType);
+			
+			var country=document.getElementById("countryid").value;
+			
+			var mylist2 = document.getElementById("countryid");
+  			var IssuingCountry= mylist2.options[mylist2.selectedIndex].text;
+  			//console.log(IssuingCountry);
+  			
+  			  			
+			var issuedate=document.getElementById("IssuingDate").value;
+			var enddate=document.getElementById("EndDate").value;
+			var picture=document.getElementById("picture").value;
+			var remark=document.getElementById("remark").value;
+			
+				if ([doctype, country, issuedate, enddate, picture].every(x=>x !=='')) {
+										
+					documents.push([doctype, country, issuedate,enddate,picture,remark]);
+					
+					       //Create a HTML Table element.
+        			var table = document.getElementById("myTable");
+       
+         
+     			   //Add the data rows.
+     			   
+     			   for (var i = count; i < documents.length; i++) {
+         		   		if(count>3)
+         		   		{row = table.insertRow(-1);         		   		
+         		  		//for (var j = 0; j < 5; j++) {
+           		  			 var cell = row.insertCell(-1);
+                			 cell.innerHTML = customers[i][1];
+                			 
+                			 var cell = row.insertCell(-1);
+                			 cell.innerHTML = customers[i][2];
+                			 
+                			 var cell = row.insertCell(-1);
+                			 cell.innerHTML = customers[i][3];
+                			 
+                			 
+                			//} 
+            }
+        }
+  
+        var dvTable = document.getElementById("dvTable");
+        dvTable.innerHTML = "";
+        dvTable.appendChild(table);
+										
+				}
+ 
+    }
+</script> 
+
+</div>
+</body>
+</html>

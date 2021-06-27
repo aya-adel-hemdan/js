@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign Up</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- <object th:include="fragments/head :: head" th:remove="tag"></object>  -->
+<!-- <link th:href="@{/assets/pages/css/profile.min.css}" rel="stylesheet" type="text/css" />  -->
+</head>
+<body>
+
+<div>
+<form method="post" action="/add_customerAdmin_data" enctype="multipart/form-data" >
+<div class="card-5">
+<table>
+	<tr class="row">
+ 		<td> <label>Code :</label></td><td><input type="text" name="code" required></td>
+   
+    
+ 		<td> <label> User Name     : </label></td><td> <input type="text"  name="username" placeholder="enter your username.." 
+  		 pattern="^[a-zA-Z]\w{2,99}$"  title="user name should start with character" required ></td>
+   </tr>
+   
+  <!--  <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">user name must start with character</span> -->
+   <tr class="row">
+  		<td><label> User Email    : </label></td><td> <input type="email" name="useremail" placeholder="enter your email.." 
+ 		 title="please insert a valid email" required></td>
+   
+		<td><label>Class : </label> </td><td>  
+		<select   name="classid" id="classid" required>
+		<option value="" >Select Class </option>
+        <option th:each="class : ${model.AllClasses}"
+                th:value="${class.id}"
+                th:text=${class.name}></option>
+		</select></td>
+	
+		<td><label>Currency : </label> 
+		<select   name="currencyid" id="currencyid" required>
+		<option value="">Select Currency</option>
+        <option th:each="currency : ${model.AllCurrencies}"
+                th:value="${currency.id}"
+                th:text=${currency.name}></option>
+		</select>
+</td></tr>
+
+<tr class="row">
+	<td>
+		<label>Payment Method : </label> 
+		<select   name="Paymentid" id="PaymentMethods" required>
+		<option value="">Select Currency</option>
+        <option th:each="payment : ${model.AllPaymentMethods}"
+                th:value="${payment.id}"
+                th:text=${payment.name}></option>
+		</select>
+	</td>
+
+
+  <td><label>Credit Limit :</label><input type="number" step="any" name="credit"></td></tr>
+
+<tr><td><h4>Legal Documents</h4></td></tr>
+
+<tr class="row">
+<td><label>TAX File Number :</label><input type="number" name="taxNumber" required></td>
+
+
+<td><label>VAT ID :</label><input type="number" name="vatID" required></td></tr>
+
+<tr class="row">
+<td><label>TAX Registration ID :</label><input type="number" name="TaxRegistrationID" required></td>
+
+
+<td><label>URL :</label><input type="url" name="URL" required></td></tr>
+
+<tr class="row">
+<td><label>Start Date :</label><input type="date" name="startDate" required></td>
+
+
+<td><label>End Date :</label><input type="date" name="endDate" required></td></tr>
+  
+  
+  </table>
+  
+  </div>
+  <br>
+  <input type="submit" value="Sign Up">
+  </form>
+  </div>
+
+</body>
+</html>

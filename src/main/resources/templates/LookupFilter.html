@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2 style="color:#34a366; float:left; padding-left:243px; font-size: 20px;">Lookups</h2><br>
+<div class="divv" style="padding: 50px 243px 100px 243px;">
+    <form method="post" id="myForm1" name="myForm1" action="/Add_Lookup_data" onsubmit="return Save_Customer()"  enctype="multipart/form-data" >
+        <div class="card-5" style="padding: 0px 50px 40px 50px;">
+            <table id="maintable">
+                <tr class="row">
+                    <td class="column1"><h3 style="color:#34a366; float:left; font-size: 20px;">Filter</h3></td>
+                </tr>
+                <tr class="row">
+
+                    <td class="column1"><label>Lookup Type </label> </td><td >
+                    <select   name="lookupTypes" id="LookupTypes" class="input1" style="width: 220px;" onchange="changedisplayy()" ><!--onchange="checkparentdisable()"  -->
+                        <option value=""></option>
+                        <option th:each="type : ${model.AllTypes}"
+                                th:value="${type.Lookup_Type}"
+                                th:text=${type.Lookup_Type}></option>
+                    </select>
+
+                    <td class="column2" style="padding-left: 7em;"><label style=" padding-right: 20px;">Lookup Value </label></td>
+                    <td ><select name="cityid" id="cityid" style="width: 220px;" disabled>
+                        <option value=""></option>
+                        <option ></option>
+                    </select></td>
+
+                </tr>
+                <tr class="row">
+                    <td class="column1">
+                        <label>Parent Lookup </label> </td><td >
+                    <select   name="ParentLookup" id="ParentLookup" onchange="changedisplayy()" disabled>
+                        <option value=""></option>
+                        <option th:each="country : ${model.AllCountries}"
+                                th:value="${country.LOOKUP_ID}" th:text=${country.DESCRIPTION}></option>
+                    </select>
+                </td><td></td>
+                    <td>
+                        <a href="/Add_Lookup" style="background-color: #34a366; border: none; margin-left: 70px;  width: 70px; " class="cancel"> +ADD </a>&nbsp;&nbsp;
+                        <input type="button" class="cancel" style="background-color: #34a366; border: none;  width: 70px;  float: right;" value="Search" onclick="search()" >
+                     </td>
+                </tr>
+
+            </table>
+
+
+            <!-- <input type="button" class="cancel" style="background-color: #34a366; border: none; float: right; margin-right: 10px;" value="+ADD" onclick="activeSave()" > -->
+
+            <br>
+            <table id="myDynamicTable" class="table table-striped" >
+                <tbody id="tbodyy"></tbody>
+            </table>
+
+        </div>
+        <br><br>
+        <!--<input type="submit" value="Save">-->
+
+    </form>
+</div>
+<script src="lookupsFilter.js"></script>
+</body>
+</html>

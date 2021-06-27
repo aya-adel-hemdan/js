@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body onload="onloading()">
+<h2 style="color:#34a366; float:left; padding-left:243px; font-size: 20px;">Add Customer</h2>
+<div class="divv" style="padding: 50px 243px 100px 243px;">
+			<form class="topnav">
+			
+  				<a href="/AddCustomerMainData">Main Data</a>
+  				<a class="active" href="/ContactInfoo">Contact Info</a>
+ 				<a href="/Legal_Documents" >Legal Documents</a>
+  				<a href="/Managers" >Managers</a>
+  				<a href="/Contact_Person" >Contact Person</a>
+  				</form>
+
+<form method="post"  id="myForm" name="myForm">
+<div class="card-5" style="padding: 20px 50px 30px 50px;">
+<table id="contactTable">
+	<tr class="row">
+		<td class="column1" >
+			<label>URL </label> </td><td ><input type="url" name="url" id="url"  class="input1">
+			
+		</td>
+		<td class="column2" style="padding-left: 7em;">
+			<label>Email </label> </td><td >
+			<input type="email" name="email" id="email" class="input1">
+		</td>
+		
+	</tr>
+	<tr class="row">
+		
+	<!--	<td class="column1"><label >Phone </label></td><td ><input type="text" name="phone" id="phone" style="width: 150px; float: left;" >
+		<input class="add" type="button" id="AddPhone" onclick="validatePhone()"  value="+ADD" style="margin-top: 7px; margin-left: 10px;">
+		</td> -->
+		<!--<td class="column1"><input class="add" type="button" id="AddPhone"
+					onclick="AddNewPhoneRow()"  value="+ADD"></td>-->
+		<td class="column1"><label >Phone </label></td><td ><input type="text" name="phone" id="phone" style="width: 130px; float: left;" >
+		<input class="add" type="button" id="AddPhone" onclick="validatePhone()"  value="+ADD" style="margin-top: 7px;  font-size: 10px; font-weight: bold">
+		<input class="add" type="button" id="view" onclick="viewphones()" value="View" style="font-size: 10px; font-max-size: initial; font-weight: bold">
+		</td>
+	</tr>
+	<tr class="row">
+		<td class="column1"><h3 style="color:#34a366; float:left; font-size: 20px;">Address</h3></td>
+	</tr>
+	<tr class="row">		
+		
+		<td class="column1"><label>Country </label></td>
+		<td ><select name="countryid" id="countryid" onchange="changedisplayy()">
+								<option value="">Select Country</option>
+								<option th:each="country : ${model.AllCountries}"
+									th:value="${country.LOOKUP_ID}" th:text=${country.DESCRIPTION}></option>
+						</select></td>
+		<!--<td class="column2" style="padding-left: 7em;"><label>City </label></td>
+		<td ><select name="cityid" id="cityid" disabled>
+								<option value="">Select City</option>
+								<option th:each="city : ${model.AllCities}"
+									th:value="${city.LOOKUP_ID}" th:text=${city.DESCRIPTION}></option>
+						</select></td>-->
+		<td class="column2" style="padding-left: 7em;"><label>City </label></td>
+		<td ><select name="cityid" id="cityid" disabled>
+			<option value="">Select City</option>
+			<option ></option>
+		</select></td>
+
+	</tr>
+	<tr class="row">
+		<td class="column1"><label>Address </label></td>
+		<td ><input type="text" name="address" id="address" class="input1"  ></td>
+		
+	<!--	<td class="column2" style="padding-left: 7em;"><label >Primary Status </label></td><td ><input type="checkbox" name="primary" id="primary" value="1" class="input1" style="float: left; margin-top: 10px;"  checked>
+		<input class="add" type="button" id="AddAddress"
+					onclick="validateAddress()"  value="+ADD" style="float:right;"></td>  -->
+
+		<td class="column2" style="padding-left: 7em;"><label >Primary Status </label></td><td ><input type="checkbox" name="primary" id="primary" value="1" class="input1" style="float: left; margin-top: 10px;"  checked>
+		<input class="add" type="button" id="AddAddress"
+			   onclick="validateAddress()"  value="+ADD" style="font-size: 10px; margin-left: 70px; font-weight: bold;">
+		<input class="add" type="button" id="viewadd" onclick="viewaddresses()" value="View" style="font-size: 10px; font-max-size: initial; float:right; font-weight: bold;">
+
+	</td>
+	</tr>
+</table>
+<br>
+	<table id="myDynamicAddressTable" class="table table-striped">
+		<tbody id="tbodyy"></tbody>
+	</table>
+
+	<table id="myDynamicPhoneTable" class="table table-striped">
+		<tbody id="tbodyyy"></tbody>
+	</table>
+
+</div>
+<br><br>
+<input type="button" class="cancel" style="background-color: #34a366; border: none;" value="Save" onclick="activeSave()" >&nbsp;&nbsp; <a href="/go_home" class="cancel"> Cancel </a>
+
+	<select name="custid" id="custid" style="display: none">
+		<option value=""></option>
+		<option th:each="customerr : ${model.customer}"
+				th:value="${customerr}" th:text=${customerr}></option>
+	</select>
+
+	<input type="text" name="mailUrl" id="mailUrl" th:value="${model.emailAndUrl}" style="display: none">
+	<input type="text" name="phones" id="phones" th:value="${model.phones}" style="display: none">
+	<input type="text" name="addresses" id="addresses" th:value="${model.addresses}" style="display: none">
+
+</form>
+
+</div>
+<!--<script src="Address.js"></script>
+<script src="Phone.js"></script> -->
+<!--<script src="NewAddress.js"></script>-->
+<script src="NewContactInfoo.js"></script>
+</body>
+</html>
