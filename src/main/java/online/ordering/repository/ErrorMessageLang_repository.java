@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ErrorMessageLang_repository extends JpaRepository<ErrorMessageLang, Long > {
 
-    @Query("select la.message from ErrorMessageLang la join ErrorMessage e on la.errorid=e.id where e.errorCode=?1 and la.LANGUAGE_CODE='US'")
-    String getErrorMessage(int code);
+    @Query("select la.message from ErrorMessageLang la join ErrorMessage e on la.errorid=e.id where e.errorCode=?1 ")
+    String getErrorMessage(int code,String lang);
 }
 

@@ -19,7 +19,7 @@
 			    	<h3 class="panel-title">Please sign in</h3>
 			 	</div>
 			  	<div class="panel-body">
-			    	<form accept-charset="UTF-8" role="form" action="/check_login" method="post">
+			    	<form accept-charset="UTF-8" role="form" method="post" id="form"  onsubmit="changelang()">
                     <fieldset>
 			    	  	<div class="form-group">
 			    		    <input class="form-control" placeholder="User Name" name="name" type="text">
@@ -27,6 +27,9 @@
 			    		<div class="form-group">
 			    			<input class="form-control" placeholder="Password" name="pass" type="password" value="">
 			    		</div>
+						<div class="form-group">
+							<input class="form-control" placeholder="Password" name="lang" id="lang" type="text" value="" >
+						</div>
 			    		<div class="checkbox">
 			    	    	<label>
 			    	    		<input name="remember" type="checkbox" value="Remember Me"> Remember Me
@@ -41,5 +44,13 @@
 		</div>
 	</div>
 </div>
+<script>
+	function changelang()
+	{
+		var lan=document.getElementById("lang").value;
+		document.getElementById("form").setAttribute("action","/go_home?language="+lan);
+	}
+
+</script>
 </body>
 </html>

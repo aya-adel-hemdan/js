@@ -118,7 +118,7 @@ public class controller {
 	String phones="";
 	String customerAddresses="";
 
-	public String language="";
+	public String lang="us";
 
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public ModelAndView closeSession(HttpServletRequest request){
@@ -254,11 +254,11 @@ public class controller {
 		List<sys_lookup_values_lang> AllCurrencies=lookupValue_lang_repo.findAllCurrencies();
 		m.addAttribute("AllCurrencies",AllCurrencies);
 
-		List<erp_partner_class_lang> AllClasses=partner_lang_repo.findAllClasses();
+		List<erp_partner_class_lang> AllClasses=partner_lang_repo.findAllClasses(lang);
 		m.addAttribute("AllClasses",AllClasses);
 		System.out.println("Classes "+ AllClasses);
 
-		Erp_partner_classes PartnerClass=partner_repo.findPartnerClass(16);
+		Erp_partner_classes PartnerClass=partner_repo.findPartnerClass(16,lang);
 		m.addAttribute("Partner",PartnerClass);
 		System.out.println("Partner  "+ PartnerClass);
 
@@ -358,11 +358,11 @@ public class controller {
 		{
 			SQLIntegrityConstraintViolationException  me = (SQLIntegrityConstraintViolationException) e.getRootCause();
 			if(me.getLocalizedMessage().contains("TAX_CARD_NO"))
-				message=0+","+"Tax ID "+error_lang_repo.getErrorMessage(me.getErrorCode())+",";
+				message=0+","+"Tax ID "+error_lang_repo.getErrorMessage(me.getErrorCode(),lang)+",";
 			else if(me.getLocalizedMessage().contains("COMM_RECORD"))
-				message=0+","+"Commercial ID "+error_lang_repo.getErrorMessage(me.getErrorCode())+",";
+				message=0+","+"Commercial ID "+error_lang_repo.getErrorMessage(me.getErrorCode(),lang)+",";
 			else if(me.getLocalizedMessage().contains("TAX_FILE_NO"))
-				message=0+","+"VAT ID "+error_lang_repo.getErrorMessage(me.getErrorCode())+",";
+				message=0+","+"VAT ID "+error_lang_repo.getErrorMessage(me.getErrorCode(),lang)+",";
 
 		}
 
@@ -449,9 +449,9 @@ public class controller {
         {
             SQLIntegrityConstraintViolationException  me = (SQLIntegrityConstraintViolationException) e.getRootCause();
 			if(me.getLocalizedMessage().contains(email))
-            message=0+","+"Email "+error_lang_repo.getErrorMessage(me.getErrorCode())+",";
+            message=0+","+"Email "+error_lang_repo.getErrorMessage(me.getErrorCode(),lang)+",";
 			if(me.getLocalizedMessage().contains(URL))
-			message=0+","+"URL "+error_lang_repo.getErrorMessage(me.getErrorCode())+",";
+			message=0+","+"URL "+error_lang_repo.getErrorMessage(me.getErrorCode(),lang)+",";
 
 		}
 		System.out.println(Addresses.size());
@@ -485,7 +485,7 @@ public class controller {
 			{
 				SQLIntegrityConstraintViolationException  me = (SQLIntegrityConstraintViolationException) e.getRootCause();
 
-				message+=0+","+"Phone number "+error_lang_repo.getErrorMessage(me.getErrorCode())+",";
+				message+=0+","+"Phone number "+error_lang_repo.getErrorMessage(me.getErrorCode(),lang)+",";
 			}
 
 		}
@@ -504,7 +504,7 @@ public class controller {
             {
                 SQLIntegrityConstraintViolationException  me = (SQLIntegrityConstraintViolationException) e.getRootCause();
 
-                message+=0+","+"Phone number "+error_lang_repo.getErrorMessage(me.getErrorCode())+",";
+                message+=0+","+"Phone number "+error_lang_repo.getErrorMessage(me.getErrorCode(),lang)+",";
             }
 
 		}
@@ -877,7 +877,7 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 	{
 		ModelAndView mv=new ModelAndView();
 
-		List<erp_partner_class_lang> AllClasses=partner_lang_repo.findAllClasses();
+		List<erp_partner_class_lang> AllClasses=partner_lang_repo.findAllClasses(lang);
 		m.addAttribute("AllClasses",AllClasses);
 
 		List<sys_lookup_values_lang> AllStatuses=lookupValue_lang_repo.findAllStatuses();
@@ -960,7 +960,7 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 			SQLIntegrityConstraintViolationException  me = (SQLIntegrityConstraintViolationException) e.getRootCause();
 			System.out.println(me.getErrorCode());
 			//System.out.println(e.getMostSpecificCause());
-			message=0+","+error_lang_repo.getErrorMessage(me.getErrorCode());
+			message=0+","+error_lang_repo.getErrorMessage(me.getErrorCode(),lang);
 		}
 		/*List<sal_customer_lang> customerlang=customer_lang_repo.findCustomersForDelete(customerId);
 		customer_lang_repo.delete(customerlang.get(0));
@@ -990,7 +990,7 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 			String payment = lookupValue_lang_repo.findLookup(payid);
 			String customertype = lookupValue_lang_repo.findLookup(typeid);
 			String active = lookupValue_lang_repo.findLookup(activeid);
-			String classDescription = partner_lang_repo.findClassDescription(classid);
+			String classDescription = partner_lang_repo.findClassDescription(classid,lang);
 			System.out.println("currency " + currency + "payment " + payment + "customerType " + customertype);
 			//System.out.println("s "+s);
 			finalresult = splitstr[0] + "," + splitstr[1] + "," + customertype + "," + classDescription + "," + currency + "," + payment + "," + splitstr[6] + "," + active + ","
@@ -1226,7 +1226,7 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 			SQLIntegrityConstraintViolationException  me = (SQLIntegrityConstraintViolationException) e.getRootCause();
 			System.out.println(me.getErrorCode());
 			//System.out.println(e.getMostSpecificCause());
-			message=0+","+error_lang_repo.getErrorMessage(me.getErrorCode());
+			message=0+","+error_lang_repo.getErrorMessage(me.getErrorCode(),lang);
 		}
 
 		return message;
@@ -1464,7 +1464,7 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 			SQLIntegrityConstraintViolationException  me = (SQLIntegrityConstraintViolationException) e.getRootCause();
 			System.out.println(me.getErrorCode());
 			//System.out.println(e.getMostSpecificCause());
-			message=0+","+error_lang_repo.getErrorMessage(me.getErrorCode());
+			message=0+","+error_lang_repo.getErrorMessage(me.getErrorCode(),lang);
 		}
 
 		return message;
@@ -1531,7 +1531,7 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 	@RequestMapping("/ClassFilter")
 	public ModelAndView ClassFilter(Model m)
 	{
-		List<erp_partner_class_lang> AllClasses=partner_lang_repo.findAllClasses();
+		List<erp_partner_class_lang> AllClasses=partner_lang_repo.findAllClasses(lang);
 		m.addAttribute("AllClasses",AllClasses);
 		System.out.println("Classes "+ AllClasses);
 		ModelAndView mv=new ModelAndView();
@@ -1553,14 +1553,14 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 			System.out.println("inside if");
 			long classnam=0;
 
-			result=partner_lang_repo.findSearchedClasses(code,classid );
+			result=partner_lang_repo.findSearchedClasses(code,classid ,lang);
 			System.out.println(result.get(0));
 			System.out.println(result.toString().substring(1,result.toString().length()-1));
 		}
 		else if(classid==-1&&code.isEmpty())
 		{
 			System.out.println("inside else");
-			result=partner_lang_repo.findAllClassesForSearch();
+			result=partner_lang_repo.findAllClassesForSearch(lang);
 			System.out.println(result.get(1));
 		}
 		System.out.println(result.toString().substring(1,result.toString().length()-1));
@@ -1585,12 +1585,12 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 		return"log_in";
 				
 	}
-	
-	
-	///////////////////////////////////////////////////////////////////////
-	@PostMapping("/check_login")
-	public ModelAndView checkLoginInfo(@RequestParam("name") String name,@RequestParam("pass") String pass)
+//////////////////////////////////////////////////////////////////////////////////////////
+	@PostMapping("/go_home")
+	public ModelAndView checkLoginInfo(@RequestParam("name") String name,@RequestParam("pass") String pass,@RequestParam("lang") String language)
 	{
+		lang=language;
+		System.out.println("language "+lang);
 		ModelAndView mv=new ModelAndView();
 		Calendar calendar = Calendar.getInstance();
 		
@@ -1619,7 +1619,7 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 				}
 				else {
 					System.out.println("second else if");
-					mv.setViewName("log_in.html");
+					mv.setViewName("NewBootstrapLogin.html");
 				}
 				
 			}
@@ -1632,7 +1632,7 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 					System.out.println("third if");
 				}
 				else {
-					mv.setViewName("log_in.html");
+					mv.setViewName("NewBootstrapLogin.html");
 				}
 			}
 			else {
@@ -1641,12 +1641,10 @@ public long SaveAddress(Model m,@RequestParam ("countryid") long country,
 		}
 		else
 		{
-			mv.setViewName("log_in.html");
+			mv.setViewName("NewBootstrapLogin.html");
 		}
 		return mv;
 	}
-	
-	
 	
 	///////////////////////////////////////////////////////////////////////
 		// Display forgotPassword page

@@ -15,8 +15,8 @@ public interface Erp_partner_classes_Repository extends JpaRepository<Erp_partne
     @Query("SELECT max( i.id ) FROM Erp_partner_classes i")
     long Last_Id ( ) ;
 
-    @Query("select l from erp_partner_class_lang e join Erp_partner_classes l ON e.PARTNER_CLASS_ID=l.id where l.PARTNER_TYPE_ID=47 and e.PARTNER_CLASS_ID=?1 AND e.LANGUAGE_CODE='US'")
-    Erp_partner_classes findPartnerClass(long id);
+    @Query("select l from erp_partner_class_lang e join Erp_partner_classes l ON e.PARTNER_CLASS_ID=l.id where l.PARTNER_TYPE_ID=47 and e.PARTNER_CLASS_ID=?1 ")
+    Erp_partner_classes findPartnerClass(long id,String lang);
 
     @Query("select l from  Erp_partner_classes l  where l.DESCRIPTION=?1 ")
     Erp_partner_classes findClassDecription(String description);

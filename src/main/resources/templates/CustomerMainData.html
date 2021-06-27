@@ -29,9 +29,9 @@
   		</form>
 		<form method="post" name="myForm1" id="myForm1" action="/contact_info" onsubmit="return validate()" enctype="multipart/form-data">
 			
-			<div class="card-5" style="padding: 20px 50px 30px 50px;">
+			<div class="card-5" style="padding: 20px 50px 30px 50px;" th:dir="#{home.dir}">
 				
-				<table id="maintable" th:dir="#{home.dir}" >
+				<table id="maintable"  >
 
 					<tr class="row">
 						<td class="column1"><label th:text="#{customer.code}"> Code  </label></td>
@@ -130,8 +130,10 @@
 				</table>
 
 			</div>
+			<div th:dir="#{home.dir}">
 			<!--<button type="submit" >Submit</button>-->
-		<br>	<br> <input class="cancel" id="savebtn" style="background-color: #34a366; border: none;" type="button" onclick="activeSave()" value="Save"> &nbsp;&nbsp; <a href="/go_home" class="cancel"> Cancel </a>
+		<br>	<br> <input class="cancel" id="savebtn" style="background-color: #34a366; border: none;" type="button" onclick="activeSave()" th:value="#{save}" > &nbsp;&nbsp; <a href="/go_home" class="cancel" th:text="#{cancel}" > Cancel </a>
+			</div>
 		</form>
 		<div id="myModal" class="modal" >
 
